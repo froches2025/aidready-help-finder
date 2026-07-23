@@ -1,0 +1,313 @@
+/* colors and sizing - keeping this consistent with my other projects */
+:root {
+  /* colors - blue/teal, calm and legible under stress rather than alarm-red */
+  --primary-color: #0b5394;
+  --secondary-color: #073763;
+  --accent-color: #0f9d8f;
+  --background-color: #f4f7fa;
+  --surface-color: #ffffff;
+  --text-color: #111827;
+  --text-light: #6b7280;
+  --border-color: #d1d5db;
+  --error-color: #dc2626;
+  --focus-color: #0b5394;
+  --hover-bg: #e5e7eb;
+
+  /* fonts and sizes */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  --font-size-base: 1rem;
+  --font-size-small: 0.875rem;
+  --font-size-large: 1.125rem;
+
+  /* spacing - keeps things consistent */
+  --gap-small: 0.5rem;
+  --gap-medium: 1rem;
+  --gap-large: 1.5rem;
+
+  /* rounded corners */
+  --border-radius: 0.375rem;
+}
+
+/* reset so the browser doesn't mess with spacing */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  font-size: var(--font-size-base);
+}
+
+/* skip link for accessibility - hidden til you tab to it */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  background-color: var(--primary-color);
+  color: var(--surface-color);
+  padding: var(--gap-medium) var(--gap-large);
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+header {
+  padding: var(--gap-large);
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+main {
+  padding: var(--gap-large);
+}
+
+section {
+  padding: var(--gap-large);
+  margin-bottom: var(--gap-large);
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+}
+
+section h2 {
+  margin-bottom: var(--gap-large);
+}
+
+footer {
+  text-align: center;
+  padding: var(--gap-large);
+  border-top: 1px solid var(--border-color);
+  color: var(--text-light);
+}
+
+/* keyboard accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+/* form stuff */
+.form-group {
+  margin-bottom: var(--gap-large);
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: var(--gap-small);
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+input,
+select,
+textarea {
+  padding: var(--gap-medium);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-size: inherit;
+  background-color: var(--surface-color);
+  color: var(--text-color);
+}
+
+button {
+  padding: var(--gap-medium) var(--gap-large);
+  margin-right: var(--gap-medium);
+  margin-bottom: var(--gap-medium);
+  background-color: var(--primary-color);
+  color: var(--surface-color);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  /* 44px minimum touch target - this has to work one-handed in a hurry */
+  min-height: 44px;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+button:disabled {
+  background-color: var(--border-color);
+  color: var(--text-light);
+  cursor: not-allowed;
+}
+
+#locate-btn {
+  background-color: var(--accent-color);
+}
+
+#locate-btn:hover {
+  background-color: #0b7d72;
+}
+
+/* status / error messaging under the search form */
+.search-status {
+  margin-top: var(--gap-small);
+  font-size: var(--font-size-small);
+  color: var(--text-light);
+  min-height: 1.5em;
+}
+
+.search-status--error {
+  color: var(--error-color);
+  font-weight: 500;
+}
+
+/* map */
+#map {
+  height: 300px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+}
+
+/* results controls */
+.results-controls {
+  margin-bottom: var(--gap-large);
+  padding-bottom: var(--gap-large);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.search-group {
+  margin-bottom: var(--gap-large);
+}
+
+.search-group label {
+  display: block;
+}
+
+.search-group input {
+  width: 100%;
+}
+
+.sort-buttons {
+  display: flex;
+  gap: var(--gap-small);
+  flex-wrap: wrap;
+}
+
+.sort-btn {
+  padding: var(--gap-medium) var(--gap-large);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  font-size: var(--font-size-small);
+  margin: 0;
+}
+
+.sort-btn:hover {
+  background-color: var(--hover-bg);
+}
+
+.sort-btn.active {
+  background-color: var(--primary-color);
+  color: var(--surface-color);
+  border-color: var(--primary-color);
+}
+
+/* results list - cards, mobile-first since this has to work on a phone in the field */
+.results-list {
+  list-style: none;
+}
+
+.result-card {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: var(--gap-large);
+  margin-bottom: var(--gap-medium);
+}
+
+.result-card-name {
+  font-weight: 600;
+  font-size: var(--font-size-large);
+  margin-bottom: var(--gap-small);
+}
+
+.result-card-address {
+  color: var(--text-light);
+  font-size: var(--font-size-small);
+  margin-bottom: var(--gap-small);
+}
+
+.result-card-distance {
+  display: inline-block;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: var(--font-size-small);
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--border-radius);
+}
+
+.result-card.result-card--active {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+mark {
+  background-color: #fef08a;
+  color: #000000;
+  padding: 0.125rem 0.25rem;
+  border-radius: var(--border-radius);
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--gap-large);
+  color: var(--text-light);
+}
+
+/* responsive stuff - mobile-first, this bumps up for bigger screens */
+
+@media (min-width: 768px) {
+  body {
+    font-size: var(--font-size-large);
+  }
+
+  section {
+    padding: var(--gap-large) calc(var(--gap-large) * 1.5);
+  }
+
+  #map {
+    height: 420px;
+  }
+
+  .results-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--gap-medium);
+  }
+
+  .result-card {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--gap-large);
+  }
+}
