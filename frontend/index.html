@@ -1,13 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AidReady Help Finder</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:title" content="AidReady Help Finder">
+    <meta property="og:description"
+        content="Find the nearest hospital, clinic, pharmacy, fire station, or police station from your address or current location.">
+    <meta property="og:type" content="website">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="style.css">
+    <title>AidReady Help Finder</title>
 </head>
+
 <body>
-  <h1>AidReady Help Finder</h1>
-  <script src="script.js"></script>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <header>
+        <h1>AidReady Help Finder</h1>
+    </header>
+    <main id="main">
+        <section id="search" aria-labelledby="search-heading">
+            <h2 id="search-heading">Find nearby help</h2>
+            <form id="search-form" novalidate>
+                <div class="form-group">
+                    <label for="address-input">Address</label>
+                    <input type="text" id="address-input" name="address" placeholder="e.g. 123 Main St, Kigali"
+                        aria-describedby="search-status" />
+                </div>
+
+                <button type="button" id="locate-btn">Use my location</button>
+
+                <div class="form-group">
+                    <label for="facility-type-select">Facility type</label>
+                    <select id="facility-type-select" name="facility_type">
+                        <option value="hospital">Hospital</option>
+                        <option value="clinic">Clinic</option>
+                        <option value="pharmacy">Pharmacy</option>
+                        <option value="fire_station">Fire station</option>
+                        <option value="police">Police</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="search-btn">Find nearby help</button>
+
+                <div id="search-status" class="search-status" aria-live="polite" role="status"></div>
+                <div id="search-error" class="search-status search-status--error" aria-live="assertive"
+                    role="alert"></div>
+            </form>
+        </section>
+
+        <section id="map-section" aria-labelledby="map-heading">
+            <h2 id="map-heading">Map</h2>
+            <div id="map" role="img" aria-label="Map showing your search origin and nearby facilities"></div>
+        </section>
+
+        <section id="results" aria-labelledby="results-heading">
+            <h2 id="results-heading" tabindex="-1">Results</h2>
+
+            <div id="results-controls" class="results-controls" hidden>
+                <div class="search-group">
+                    <label for="filter-input">Filter results</label>
+                    <input type="text" id="filter-input" placeholder="filter by name or address" />
+                </div>
+
+                <div class="sort-buttons">
+                    <button type="button" id="sort-distance" class="sort-btn active">Sort by distance</button>
+                    <button type="button" id="sort-name" class="sort-btn">Sort by name</button>
+                </div>
+            </div>
+
+            <ul id="results-list" class="results-list"></ul>
+
+            <div id="empty-state" class="empty-state" hidden>
+                <p>No facilities of this type found within 5km.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>AidReady Help Finder — built for the Web Infrastructure Summative.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script type="module" src="script.js"></script>
 </body>
+
 </html>
