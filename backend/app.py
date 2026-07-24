@@ -3,9 +3,11 @@ import os
 
 import requests
 from dotenv import load_dotenv
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 
 load_dotenv()
+
+FRONTEND_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend")
 
 app = Flask(__name__)
 
@@ -53,6 +55,13 @@ def haversine_km(lat1, lng1, lat2, lng2):
 @app.route("/")
 def index():
     return "AidReady Help Finder API is running"
+
+
+@app.route("/frontend/<path:filename>")
+def frontend_files(filename):
+    # Serves the static frontend from the same origin as the API so
+    # script.js's same-origin fetch calls work without CORS in local dev.
+    return send_from_directory(FRONTEND_DIR, filename)
 
 
 @app.route("/api/geocode")
